@@ -69,12 +69,18 @@ exports.deleteCard = async (req, res, next) => {
   }
 
   try {
-    await Card.findByIdAndRemove(cardId).orFail(() => {
+    const card = await Card.findById(cardId).orFail(() => {
       const error = new Error('Id de tarjeta no encontrado');
       error.status = 404;
       throw error;
     });
 
+    if (card.owner.toString() !== req.user._id.toString()) {
+      const error = new Error('Operación no permitida');
+      error.status = 403;
+      throw error;
+    }
+    await card.remove();
     return res.status(200).send({ message: 'Tarjeta eliminada correctamente' });
   } catch (error) {
     if (!error.status) {
