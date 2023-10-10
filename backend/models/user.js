@@ -35,8 +35,7 @@ const userSchema = new mongoose.Schema({
       validator(v) {
         return validator.isEmail(v);
       },
-      message: (props) =>
-        `${props.value} no es una dirección de correo válida!`,
+      message: (props) => `${props.value} no es una dirección de correo válida!`,
     },
   },
   password: {

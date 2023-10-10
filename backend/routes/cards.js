@@ -1,18 +1,19 @@
 /* eslint-disable import/no-dynamic-require */
 const express = require('express');
 const path = require('path');
+
 const authMiddleware = require(path.join(
   __dirname,
   '..',
   'middlewares',
-  'auth'
+  'auth',
 ));
 
 const cardController = require(path.join(
   __dirname,
   '..',
   'controllers',
-  'cards'
+  'cards',
 ));
 
 const router = express.Router();

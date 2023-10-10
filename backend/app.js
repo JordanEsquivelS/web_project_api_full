@@ -11,17 +11,13 @@ const usersRouter = require(path.join(__dirname, 'routes', 'users.js'));
 const { login, createUser } = require(path.join(
   __dirname,
   'controllers',
-  'users.js'
+  'users.js',
 ));
-const authMiddleware = require(path.join(
-  __dirname,
-  'middlewares',
-  'authMiddleware.js'
-)); 
 
 app.use(express.json());
 
 if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line global-require
   require('dotenv').config();
 }
 

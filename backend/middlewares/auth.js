@@ -1,16 +1,17 @@
+/* eslint-disable consistent-return */
 const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
 function authMiddleware(req, res, next) {
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.headers.authorization
+    ? req.headers.authorization.split(' ')[1]
+    : null;
 
   if (!token) {
-    return res
-      .status(403)
-      .json({
-        message: 'Acceso prohibido. No se proporcionó token de autenticación.',
-      });
+    return res.status(403).json({
+      message: 'Acceso prohibido. No se proporcionó token de autenticación.',
+    });
   }
 
   try {

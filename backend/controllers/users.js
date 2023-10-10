@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = process.env.JWT_SECRET;
 
@@ -53,9 +54,9 @@ const createUser = async (req, res, next) => {
   const validationResult = userValidationSchema.validate(req.body);
 
   if (validationResult.error) {
-    return res
-      .status(400)
-      .send({ error: validationResult.error.details[0].message });
+    const error = new Error(validationResult.error.details[0].message);
+    error.status = 400;
+    return next(error);
   }
 
   try {
@@ -65,7 +66,7 @@ const createUser = async (req, res, next) => {
       password: hashedPassword,
     });
     await user.save();
-    res.status(201).send(user);
+    return res.status(201).send(user);
   } catch (err) {
     err.status = 400;
     if (err.name === 'ValidationError' && err.errors.avatar) {
@@ -73,7 +74,7 @@ const createUser = async (req, res, next) => {
     } else {
       err.message = 'Error al crear el usuario';
     }
-    next(err);
+    return next(err);
   }
 };
 
@@ -83,24 +84,17 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
 
-    if (!user) {
-      return res
-        .status(401)
-        .send({ message: 'Correo electrónico o contraseña incorrecta.' });
-    }
-
-    const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
-      return res
-        .status(401)
-        .send({ message: 'Correo electrónico o contraseña incorrecta.' });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      const error = new Error('Correo electrónico o contraseña incorrecta.');
+      error.status = 401;
+      return next(error);
     }
 
     const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
-
     return res.status(200).send({ token });
   } catch (err) {
-    return res.status(500).send({ message: 'Error interno del servidor.' });
+    err.message = 'Error interno del servidor.';
+    return next(err);
   }
 };
 
@@ -110,7 +104,7 @@ const getCurrentUser = async (req, res, next) => {
     if (!user) {
       throw new Error('Usuario no encontrado');
     }
-    res.status(200).send(user);
+    return res.status(200).send(user);
   } catch (err) {
     err.message = err.message || 'Error al obtener el usuario';
     return next(err);
@@ -120,9 +114,7 @@ const getCurrentUser = async (req, res, next) => {
 const updateUserProfile = async (req, res, next) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'about'];
-  const isValidOperation = updates.every((update) =>
-    allowedUpdates.includes(update)
-  );
+  const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
   if (!isValidOperation) {
     const error = new Error('Actualizaciones no válidas!');
@@ -131,9 +123,7 @@ const updateUserProfile = async (req, res, next) => {
   }
 
   try {
-    const user = await User.findById(req.user._id).orFail(
-      new Error('Usuario no encontrado')
-    );
+    const user = await User.findById(req.user._id).orFail(new Error('Usuario no encontrado'));
 
     updates.forEach((update) => {
       user[update] = req.body[update];
@@ -160,9 +150,7 @@ const updateUserAvatar = async (req, res, next) => {
         .send({ message: 'El campo avatar es requerido para esta operación.' });
     }
 
-    const user = await User.findById(req.user._id).orFail(
-      new Error('Usuario no encontrado')
-    );
+    const user = await User.findById(req.user._id).orFail(new Error('Usuario no encontrado'));
 
     user.avatar = req.body.avatar;
     await user.save();

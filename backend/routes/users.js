@@ -1,18 +1,19 @@
 /* eslint-disable import/no-dynamic-require */
 const express = require('express');
 const path = require('path');
+
 const authMiddleware = require(path.join(
   __dirname,
   '..',
   'middlewares',
-  'auth'
+  'auth',
 ));
 
 const userController = require(path.join(
   __dirname,
   '..',
   'controllers',
-  'users'
+  'users',
 ));
 
 const router = express.Router();
@@ -24,7 +25,7 @@ router.patch('/users/me', authMiddleware, userController.updateUserProfile);
 router.patch(
   '/users/me/avatar',
   authMiddleware,
-  userController.updateUserAvatar
+  userController.updateUserAvatar,
 );
 
 module.exports = router;
