@@ -17,10 +17,14 @@ const userController = require(path.join(
 
 const router = express.Router();
 
-router.get('/users', userController.getUsers);
-router.get('/users/:_id', userController.getUserById);
+router.get('/users', authMiddleware, userController.getUsers);
+router.get('/users/:_id', authMiddleware, userController.getUserById);
 router.get('/users/me', authMiddleware, userController.getCurrentUser);
-router.patch('/users/me', userController.updateUserProfile);
-router.patch('/users/me/avatar', userController.updateUserAvatar);
+router.patch('/users/me', authMiddleware, userController.updateUserProfile);
+router.patch(
+  '/users/me/avatar',
+  authMiddleware,
+  userController.updateUserAvatar
+);
 
 module.exports = router;
