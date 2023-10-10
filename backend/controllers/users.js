@@ -104,6 +104,19 @@ const login = async (req, res, next) => {
   }
 };
 
+const getCurrentUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+      throw new Error('Usuario no encontrado');
+    }
+    res.status(200).send(user);
+  } catch (err) {
+    err.message = err.message || 'Error al obtener el usuario';
+    return next(err);
+  }
+};
+
 const updateUserProfile = async (req, res, next) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['name', 'about'];
@@ -175,4 +188,5 @@ module.exports = {
   updateUserProfile,
   updateUserAvatar,
   login,
+  getCurrentUser,
 };

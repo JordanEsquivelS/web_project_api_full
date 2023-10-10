@@ -8,15 +8,18 @@ const PORT = 3000;
 
 const cardsRouter = require(path.join(__dirname, 'routes', 'cards.js'));
 const usersRouter = require(path.join(__dirname, 'routes', 'users.js'));
+const { login, createUser } = require(path.join(
+  __dirname,
+  'controllers',
+  'users.js'
+));
+const authMiddleware = require(path.join(
+  __dirname,
+  'middlewares',
+  'authMiddleware.js'
+)); 
 
 app.use(express.json());
-
-app.use((req, res, next) => {
-  req.user = {
-    _id: '6504b8c73db08aa6954905b4',
-  };
-  next();
-});
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
@@ -25,6 +28,9 @@ if (process.env.NODE_ENV !== 'production') {
 app.use(cardsRouter);
 
 app.use(usersRouter);
+
+app.post('/signin', login);
+app.post('/signup', createUser);
 
 app.use((req, res, next) => {
   const error = new Error('Recurso solicitado no encontrado');
