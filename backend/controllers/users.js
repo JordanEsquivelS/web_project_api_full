@@ -4,6 +4,8 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const Joi = require('joi');
 
+const SECRET_KEY = process.env.JWT_SECRET;
+
 const User = require(path.join(__dirname, '..', 'models', 'user'));
 
 const getUsers = async (req, res, next) => {
@@ -72,6 +74,33 @@ const createUser = async (req, res, next) => {
       err.message = 'Error al crear el usuario';
     }
     next(err);
+  }
+};
+
+const login = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res
+        .status(401)
+        .send({ message: 'Correo electrónico o contraseña incorrecta.' });
+    }
+
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res
+        .status(401)
+        .send({ message: 'Correo electrónico o contraseña incorrecta.' });
+    }
+
+    const token = jwt.sign({ _id: user._id }, SECRET_KEY, { expiresIn: '7d' });
+
+    return res.status(200).send({ token });
+  } catch (err) {
+    return res.status(500).send({ message: 'Error interno del servidor.' });
   }
 };
 
@@ -145,4 +174,5 @@ module.exports = {
   createUser,
   updateUserProfile,
   updateUserAvatar,
+  login,
 };

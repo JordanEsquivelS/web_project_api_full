@@ -18,6 +18,10 @@ app.use((req, res, next) => {
   next();
 });
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 app.use(cardsRouter);
 
 app.use(usersRouter);
