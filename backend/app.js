@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const { requestLogger, errorLogger } = require('./logger');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +21,15 @@ const errorHandler = require(path.join(
 ));
 
 app.use(express.json());
+app.use((req, res, next) => {
+  requestLogger.info({
+    method: req.method,
+    url: req.url,
+    body: req.body,
+    headers: req.headers,
+  });
+  next();
+});
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require
@@ -37,6 +47,14 @@ app.use((req, res, next) => {
   const error = new Error('Recurso solicitado no encontrado');
   error.status = 404;
   next(error);
+});
+
+app.use((err, req, res, next) => {
+  errorLogger.error({
+    message: err.message,
+    stack: err.stack,
+  });
+  next(err);
 });
 
 app.use(errorHandler);
