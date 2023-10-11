@@ -6,6 +6,10 @@ const { requestLogger, errorLogger } = require('./logger');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line global-require
+  require('dotenv').config();
+}
 
 const cardsRouter = require(path.join(__dirname, 'routes', 'cards.js'));
 const usersRouter = require(path.join(__dirname, 'routes', 'users.js'));
@@ -30,11 +34,6 @@ app.use((req, res, next) => {
   });
   next();
 });
-
-if (process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line global-require
-  require('dotenv').config();
-}
 
 app.use(cardsRouter);
 
