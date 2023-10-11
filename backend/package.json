@@ -1,6 +1,6 @@
 {
   "name": "web_project_around_express",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "Back-End express",
   "main": "app.js",
   "scripts": {
