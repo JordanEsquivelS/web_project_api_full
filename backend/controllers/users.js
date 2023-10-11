@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 const path = require('path');
 const bcrypt = require('bcryptjs');
-const Joi = require('joi');
 const jwt = require('jsonwebtoken');
 
 const SECRET_KEY = process.env.JWT_SECRET;
@@ -42,23 +41,7 @@ const getUserById = async (req, res, next) => {
   }
 };
 
-const userValidationSchema = Joi.object({
-  name: Joi.string().min(2).max(30).optional(),
-  about: Joi.string().min(2).max(30).optional(),
-  avatar: Joi.string().uri().optional(),
-  email: Joi.string().required().email(),
-  password: Joi.string().required().min(8),
-});
-
 const createUser = async (req, res, next) => {
-  const validationResult = userValidationSchema.validate(req.body);
-
-  if (validationResult.error) {
-    const error = new Error(validationResult.error.details[0].message);
-    error.status = 400;
-    return next(error);
-  }
-
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
