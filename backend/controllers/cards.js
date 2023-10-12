@@ -25,7 +25,12 @@ exports.createCard = async (req, res, next) => {
       owner: req.user._id,
     });
     await card.save();
-    return res.status(201).send(card);
+    const populatedCard = await card.populate({
+      path: 'owner',
+      select: 'name about _id',
+    });
+
+    return res.status(201).send(populatedCard);
   } catch (error) {
     if (error.name === 'ValidationError') {
       let errorMessage = error.message;
@@ -121,7 +126,6 @@ exports.likeCard = async (req, res, next) => {
       error.status = 404;
       error.message = 'Tarjeta no encontrada';
     } else {
-      console.error(error);
       error.status = 500;
       error.message = 'Error al dar like a la tarjeta';
     }
