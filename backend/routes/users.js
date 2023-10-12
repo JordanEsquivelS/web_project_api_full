@@ -22,10 +22,10 @@ const userController = require(path.join(
 const router = express.Router();
 
 const validateURL = (value, helpers) => {
-  if (validator.isURL(value)) {
-    return value;
+  if (!validator.isURL(value)) {
+    return helpers.error('custom.link');
   }
-  return helpers.error('string.uri');
+  return value;
 };
 
 const userIdValidation = celebrate({
@@ -39,10 +39,7 @@ const userIdValidation = celebrate({
 const userValidation = celebrate({
   [Segments.BODY]: Joi.object({
     name: Joi.string().min(2).max(30).optional(),
-    about: Joi.string().min(2).max(30).optional(),
-    avatar: Joi.string().required().custom(validateURL),
-    email: Joi.string().required().email(),
-    password: Joi.string().required().min(8),
+    about: Joi.string().min(2).max(30).optional()
   }),
 });
 
