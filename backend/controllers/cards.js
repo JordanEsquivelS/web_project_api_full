@@ -92,7 +92,6 @@ exports.deleteCard = async (req, res, next) => {
     await Card.deleteOne({ _id: cardId });
     return res.status(200).send({ message: 'Tarjeta eliminada correctamente' });
   } catch (error) {
-    console.error(error);
     if (!error.status) {
       error.status = 500;
       error.message = 'Error al eliminar la tarjeta';
@@ -107,7 +106,12 @@ exports.likeCard = async (req, res, next) => {
       req.params._id,
       { $addToSet: { likes: req.user._id } },
       { new: true },
-    ).orFail(new Error('Tarjeta no encontrada'));
+    )
+      .populate({
+        path: 'likes',
+        select: 'name about _id',
+      })
+      .orFail(new Error('Tarjeta no encontrada'));
 
     return res.status(200).send(updatedCard);
   } catch (error) {
@@ -117,6 +121,7 @@ exports.likeCard = async (req, res, next) => {
       error.status = 404;
       error.message = 'Tarjeta no encontrada';
     } else {
+      console.error(error);
       error.status = 500;
       error.message = 'Error al dar like a la tarjeta';
     }
