@@ -85,13 +85,14 @@ exports.deleteCard = async (req, res, next) => {
     });
 
     if (card.owner.toString() !== req.user._id.toString()) {
-      const error = new Error('Operación no permitida');
+      const error = new Error('Error de autorización: Tarjeta no pertenece al usuario');
       error.status = 403;
       throw error;
     }
-    await card.remove();
+    await Card.deleteOne({ _id: cardId });
     return res.status(200).send({ message: 'Tarjeta eliminada correctamente' });
   } catch (error) {
+    console.error(error);
     if (!error.status) {
       error.status = 500;
       error.message = 'Error al eliminar la tarjeta';

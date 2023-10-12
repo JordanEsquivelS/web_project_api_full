@@ -35,9 +35,16 @@ const createCardValidation = celebrate({
   }),
 });
 
+const validateCardId = (value, helpers) => {
+  if (!/^[0-9a-fA-F]{24}$/.test(value)) {
+    return helpers.error('custom.cardId');
+  }
+  return value;
+};
+
 const cardIdValidation = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
-    _id: Joi.string().hex().length(24),
+    _id: Joi.string().custom(validateCardId),
   }),
 });
 
