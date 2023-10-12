@@ -36,12 +36,20 @@ const userIdValidation = celebrate({
   }),
 });
 
+const validateLength = (value, helpers) => {
+  if (value.length < 2 || value.length > 30) {
+    return helpers.error('custom.length');
+  }
+  return value;
+};
+
 const userValidation = celebrate({
   [Segments.BODY]: Joi.object({
-    name: Joi.string().min(2).max(30).optional(),
-    about: Joi.string().min(2).max(30).optional()
+    name: Joi.string().optional().custom(validateLength),
+    about: Joi.string().optional().custom(validateLength)
   }),
 });
+
 
 router.get('/users', authMiddleware, userController.getUsers);
 
