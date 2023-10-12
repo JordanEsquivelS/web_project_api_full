@@ -7,14 +7,17 @@ module.exports = (err, req, res, next) => {
 
   const errorMessages = {
     'custom.link': 'Link inválido',
-    'custom.cardId': 'Id inválido o no encontrado'
+    'custom.cardId': 'Id inválido o no encontrado',
   };
 
   if (isCelebrateError(err)) {
     status = 400;
-    const errorDetail = (err.details.get('body') || err.details.get('params') || {}).details?.[0];
+    const errorDetails = err.details.get('body') || err.details.get('params');
+    const errorDetail = errorDetails && errorDetails.details ? errorDetails.details[0] : null;
 
-    message = errorMessages[errorDetail?.type] || "Validation failed";
+    message = errorDetail && errorMessages[errorDetail.type]
+      ? errorMessages[errorDetail.type]
+      : 'Validation failed';
   }
 
   res.status(status).json({ message });
