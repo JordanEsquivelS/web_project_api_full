@@ -27,6 +27,15 @@ exports.createCard = async (req, res, next) => {
     await card.save();
     return res.status(201).send(card);
   } catch (error) {
+    if (error.name === 'ValidationError') {
+      let errorMessage = error.message;
+      if (error.errors && error.errors.name && error.errors.name.kind === 'minlength') {
+        errorMessage = 'El nombre debe tener entre 2 y 30 caracteres';
+      }
+
+      return res.status(400).send({ message: errorMessage });
+    }
+
     error.status = 400;
     error.message = 'Error al crear la tarjeta';
     return next(error);
@@ -101,7 +110,9 @@ exports.likeCard = async (req, res, next) => {
 
     return res.status(200).send(updatedCard);
   } catch (error) {
-    if (error instanceof mongoose.Error.CastError || error.message === 'Tarjeta no encontrada') {
+    if (
+      error instanceof mongoose.Error.CastError || error.message === 'Tarjeta no encontrada'
+    ) {
       error.status = 404;
       error.message = 'Tarjeta no encontrada';
     } else {
@@ -122,7 +133,9 @@ exports.dislikeCard = async (req, res, next) => {
 
     return res.status(200).send(updatedCard);
   } catch (error) {
-    if (error instanceof mongoose.Error.CastError || error.message === 'Tarjeta no encontrada') {
+    if (
+      error instanceof mongoose.Error.CastError || error.message === 'Tarjeta no encontrada'
+    ) {
       error.status = 404;
       error.message = 'Tarjeta no encontrada';
     } else {

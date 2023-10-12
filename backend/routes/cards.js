@@ -22,10 +22,10 @@ const cardController = require(path.join(
 const router = express.Router();
 
 const validateURL = (value, helpers) => {
-  if (validator.isURL(value)) {
-    return value;
+  if (!validator.isURL(value)) {
+    return helpers.error('custom.link');
   }
-  return helpers.error('string.uri');
+  return value;
 };
 
 const createCardValidation = celebrate({
