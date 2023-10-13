@@ -47,7 +47,11 @@ const createUser = async (req, res, next) => {
     if (existingUser) {
       return res.status(400).send({ message: 'Correo ya registrado' });
     }
-
+    const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    if (req.body.password.length < 5 || !specialCharRegex.test(req.body.password)) {
+      return res.status(400).send({ message: 'La contraseña debe tener al menos 5 caracteres y contener al menos 1 carácter especial.' });
+    }
+    
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
       ...req.body,
