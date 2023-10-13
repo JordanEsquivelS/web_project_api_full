@@ -51,7 +51,7 @@ const createUser = async (req, res, next) => {
     if (req.body.password.length < 5 || !specialCharRegex.test(req.body.password)) {
       return res.status(400).send({ message: 'La contraseña debe tener al menos 5 caracteres y contener al menos 1 carácter especial.' });
     }
-    
+
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
       ...req.body,
@@ -82,7 +82,7 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email }).select('+password');
     if (!user) {
-      const error = new Error('Usuario no encontrado.');
+      const error = new Error('Correo electrónico o contraseña incorrecta.');
       error.status = 404;
       return next(error);
     }
