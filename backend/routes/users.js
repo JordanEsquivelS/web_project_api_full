@@ -53,8 +53,8 @@ const validateLength = (value, helpers) => {
 
 const userValidation = celebrate({
   [Segments.BODY]: Joi.object({
-    name: Joi.string().optional().custom(validateLength),
-    about: Joi.string().optional().custom(validateLength),
+    name: Joi.string().required().custom(validateLength),
+    about: Joi.string().required().custom(validateLength),
   }),
 });
 
