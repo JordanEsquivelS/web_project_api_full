@@ -54,10 +54,9 @@ const validateLength = (value, helpers) => {
 const userValidation = celebrate({
   [Segments.BODY]: Joi.object({
     name: Joi.string().optional().custom(validateLength),
-    about: Joi.string().optional().custom(validateLength)
+    about: Joi.string().optional().custom(validateLength),
   }),
 });
-
 
 router.get('/users', authMiddleware, userController.getUsers);
 router.get('/users/me', authMiddleware, userController.getCurrentUser);

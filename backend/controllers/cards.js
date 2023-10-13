@@ -7,14 +7,14 @@ const Card = require(path.join(__dirname, '..', 'models', 'card'));
 exports.getCards = async (req, res, next) => {
   try {
     const cards = await Card.find({})
-    .populate({
-      path: 'owner',
-      select: 'name about _id'
-    })
-    .populate({
-      path: 'likes',
-      select: 'name about _id'
-    });
+      .populate({
+        path: 'owner',
+        select: 'name about _id',
+      })
+      .populate({
+        path: 'likes',
+        select: 'name about _id',
+      });
     return res.status(200).send(cards);
   } catch (error) {
     error.status = 500;
