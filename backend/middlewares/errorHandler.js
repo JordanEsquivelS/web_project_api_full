@@ -7,9 +7,9 @@ module.exports = (err, req, res, next) => {
 
   const errorMessages = {
     'custom.link': 'Link inválido',
-    'custom.cardId': 'Id inválido o no encontrado',
+    'custom.cardId': 'Id inválido de tarjeta',
     'custom.length': 'Name o About debe tener entre 2 y 30 caracteres.',
-    'custom.id': 'ID no valido',
+    'custom.id': 'ID de usuario no valido',
   };
 
   if (isCelebrateError(err)) {
