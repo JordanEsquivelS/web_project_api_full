@@ -28,11 +28,19 @@ const validateURL = (value, helpers) => {
   return value;
 };
 
+const validateUserId = (value, helpers) => {
+  const regex = /^[0-9a-fA-F]{24}$/;
+  if (!regex.test(value)) {
+    return helpers.error('custom.id');
+  }
+  return value;
+};
+
 const userIdValidation = celebrate({
   [Segments.PARAMS]: Joi.object().keys({
     _id: Joi.string()
       .required()
-      .regex(/^[0-9a-fA-F]{24}$/),
+      .custom(validateUserId),
   }),
 });
 
@@ -52,6 +60,7 @@ const userValidation = celebrate({
 
 
 router.get('/users', authMiddleware, userController.getUsers);
+router.get('/users/me', authMiddleware, userController.getCurrentUser);
 
 router.get(
   '/users/:_id',
@@ -59,8 +68,6 @@ router.get(
   userIdValidation,
   userController.getUserById,
 );
-
-router.get('/users/me', authMiddleware, userController.getCurrentUser);
 
 router.patch(
   '/users/me',

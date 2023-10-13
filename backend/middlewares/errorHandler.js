@@ -9,6 +9,7 @@ module.exports = (err, req, res, next) => {
     'custom.link': 'Link inválido',
     'custom.cardId': 'Id inválido o no encontrado',
     'custom.length': 'Name o About debe tener entre 2 y 30 caracteres.',
+    'custom.id': 'ID no valido',
   };
 
   if (isCelebrateError(err)) {
