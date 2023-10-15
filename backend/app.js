@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./logger');
 
 const app = express();
@@ -24,6 +25,8 @@ const errorHandler = require(path.join(
   'errorHandler.js',
 ));
 
+app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 app.use((req, res, next) => {
   requestLogger.info({
@@ -38,6 +41,12 @@ app.use((req, res, next) => {
 app.use(cardsRouter);
 
 app.use(usersRouter);
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('El servidor va a caer');
+  }, 0);
+});
 
 app.post('/signin', login);
 app.post('/signup', createUser);
