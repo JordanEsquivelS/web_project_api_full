@@ -1,0 +1,12 @@
+.photo-grid__like {
+  width: 21px;
+  height: 19px;
+  margin: 0 auto 0;
+  padding: 0;
+  cursor: pointer;
+  background-image: url(../../../images/corazon_blanco.svg);
+}
+.photo-grid__like:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}

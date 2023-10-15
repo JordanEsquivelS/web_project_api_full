@@ -1,0 +1,23 @@
+.header__wrapper {
+  margin-top: auto;
+  width: 380px;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 580px) {
+  .header__wrapper {
+    margin-top: 40px;
+    max-height: 0;
+    visibility: hidden;
+    width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, visibility 0.5s ease-out;
+  }
+
+  .header__wrapper--active {
+    max-height: 100px;
+    visibility: visible;
+  }
+}

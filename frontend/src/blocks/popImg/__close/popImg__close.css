@@ -1,0 +1,26 @@
+.popImg__close {
+  display: block;
+  width: 40px;
+  cursor: pointer;
+  position: absolute;
+  right: -45px;
+  top: -50px;
+}
+.popImg__close:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+@media (max-width: 730px) {
+  .popImg__close {
+    max-width: 30px;
+    right: -32px;
+    top: -40px;
+  }
+}
+@media (max-width: 431px) {
+  .popImg__close {
+    max-width: 30px;
+    right: -30px;
+    top: -40px;
+  }
+}

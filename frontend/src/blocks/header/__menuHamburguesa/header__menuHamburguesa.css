@@ -1,0 +1,23 @@
+.header__menuHamburguesa {
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 580px) {
+  .header__menuHamburguesa {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.7s;
+  }
+  .header__menuHamburguesa:hover {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 431px) {
+  .header__menuHamburguesa {
+    margin-right: 21px;
+  }
+}

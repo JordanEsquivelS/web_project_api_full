@@ -1,0 +1,40 @@
+.header__login {
+  color: white;
+  cursor: pointer;
+  margin-top: auto;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  outline: none;
+  opacity: 1;
+  transition: opacity 0.7s;
+  font-family: inherit;
+  background: none;
+  border: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.header__login:hover {
+  opacity: 0.5;
+}
+@media (max-width: 660px) {
+  .header__login {
+    font-size: 16px;
+  }
+}
+@media (max-width: 580px) {
+  .header__login {
+    margin: 18px auto;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 431px) {
+  .header__login {
+    font-size: 18px;
+    line-height: 1.21;
+  }
+}

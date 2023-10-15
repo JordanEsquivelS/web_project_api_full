@@ -1,0 +1,28 @@
+.profile__addPlace {
+  width: 150px;
+  height: 50px;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-right: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+.profile__addPlace:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+@media (max-width: 880px) {
+  .profile__addPlace {
+    margin: 36px auto 0;
+    width: 350px;
+  }
+}
+@media (max-width: 431px) {
+  .profile__addPlace {
+    margin: 36px auto 0;
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,13 @@
+.info-tooltip__wrapper {
+  width: 470px;
+  padding: 0;
+  margin: 0;
+  display:block;
+}
+
+@media (max-width: 555px) {
+  .info-tooltip__wrapper {
+    max-width: 290px;
+    height: 376px;
+  }
+}

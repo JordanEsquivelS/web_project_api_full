@@ -1,0 +1,21 @@
+.form__name {
+  width: 358px;
+  margin: 54px 0 8px 0px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom: 1px solid #000000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #cccccc;
+}
+.form__name:focus {
+  color: #000;
+}
+@media (max-width: 555px) {
+  .form__name {
+    max-width: 238px;
+    margin: 76px auto 0;
+  }
+}

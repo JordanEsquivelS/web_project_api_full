@@ -1,0 +1,16 @@
+.popup__container-image {
+  width: 40px;
+  height: 40px;
+  display: block;
+  margin-left: auto;
+  cursor: pointer;
+}
+.popup__container-image:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+@media (max-width: 555px) {
+  .popup__container-image {
+    margin-bottom: 17px;
+  }
+}

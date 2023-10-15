@@ -1,0 +1,25 @@
+.profile-info__about-me {
+  grid-area: profile-info__about-me;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  height: 49px;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 13px 0 0 0;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media (max-width: 880px) {
+  .profile-info__about-me {
+    margin: 14px auto 0;
+  }
+}
+@media (max-width: 431px) {
+  .profile-info__about-me {
+    font-size: 14px;
+    line-height: 1.21;
+  }
+}

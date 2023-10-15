@@ -1,0 +1,17 @@
+.info-tooltip__message {
+  text-align: center;
+  color: black;
+  font-size: 24px;
+  font-family: Inter;
+  font-weight: 900;
+  width: 358px;
+  margin: 0 auto 60px;
+}
+
+@media (max-width: 555px) {
+  .info-tooltip__message {
+    width: 244px;
+    font-size: 20px;
+    margin: 0 auto 26px;
+  }
+}

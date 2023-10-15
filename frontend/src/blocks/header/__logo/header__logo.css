@@ -1,0 +1,13 @@
+.header__logo {
+  max-width: 880px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 580px) {
+  .header__logo {
+    flex-direction: column;
+    justify-content: left;
+  }
+}

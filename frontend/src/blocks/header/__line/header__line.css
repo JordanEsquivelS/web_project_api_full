@@ -1,0 +1,11 @@
+.header__line {
+  background-color: #545454;
+  height: 1px;
+  max-width: 880px;
+  margin: 41px auto 0;
+}
+@media (max-width: 431px) {
+  .header__line {
+    margin-top: 32px;
+  }
+}

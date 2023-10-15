@@ -1,0 +1,27 @@
+.profile-info__edit {
+  grid-area: profile-info__edit;
+  max-width: 100%;
+  max-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-right: 0;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.profile-info__edit:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
+@media (max-width: 880px) {
+  .profile-info__edit {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .profile-info__edit {
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,12 @@
+.header__imageContainer {
+  width: fit-content;
+}
+
+@media (max-width: 580px) {
+  .header__imageContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}

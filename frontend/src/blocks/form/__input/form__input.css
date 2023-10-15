@@ -1,0 +1,21 @@
+.form__input {
+  width: 358px;
+  margin: 29.74px 0 8px 0;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom: 1px solid #000000;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.21;
+  color: #CCCCCC;
+}
+.form__input:focus{
+  color: #000000;
+}
+@media (max-width: 555px) {
+  .form__input {
+    max-width: 238px;
+    margin: 30px auto 46px;
+  }
+}

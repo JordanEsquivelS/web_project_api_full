@@ -1,0 +1,19 @@
+.auth__input {
+  font-size: 14px;
+  width: 358px;
+  font-family: Inter;
+  font-weight: 400;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  color: white;
+  padding: 0;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 431px) {
+  .auth__input{
+    width: 260px;
+  }
+}
