@@ -1,4 +1,4 @@
-# Proyecto 15 - React y Autorización: Alrededor de los Estados Unidos
+# Proyecto 16 - React y Autorización - Frontend
 
 Este proyecto React presenta una colección de imágenes interesantes como paisajes, animales, comida y más. Los usuarios pueden explorar esta galería de imágenes y dar "Me gusta" a sus favoritas. Además, pueden ver detalles de las imágenes en un popup interactivo.
 
@@ -21,7 +21,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 
 1. **Clonar el repositorio**: Comienza clonando el repositorio de GitHub en tu máquina local utilizando el siguiente comando:
 
-   git clone https://github.com/JordanEsquivelS/web_project_around_auth.git
+   git clone https://github.com/JordanEsquivelS/web_project_api_full.git
 
 2. **Instalar dependencias**: Abre una terminal en la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias:
 
@@ -98,8 +98,6 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 
   ![Confirmación de Eliminar tarjeta](./src/demo_images/10_EliminarTarjeta.png)
 
-## Enlaces
+## Comentarios y Sugerencias
 
-- [Proyecto en GitHub Pages](https://jordanesquivels.github.io/web_project_around_auth/)
-
-- [Proyecto en GitHub](https://github.com/JordanEsquivelS/web_project_around_auth/tree/main)
+Agradezco cualquier comentario o sugerencia para mejorar este proyecto. Si tienes ideas o identificas algún problema, no dudes en abrir un "Issue" en este repositorio de GitHub o enviar una "Pull Request" si deseas contribuir directamente con mejoras al código. ¡Tu feedback es invaluable para el crecimiento y mejora de este proyecto!

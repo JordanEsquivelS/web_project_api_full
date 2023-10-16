@@ -1,4 +1,4 @@
-# Proyecto 13 - web_project_around_express
+# Proyecto 16 - Backend Completo
 
 Esta es una aplicación Express básica que sirve datos relacionados con tarjetas (cards) y usuarios.
 
@@ -62,7 +62,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 
 1. **Clonar el repositorio**: Comienza clonando el repositorio de GitHub en tu máquina local utilizando el siguiente comando:
 
-   git clone https://github.com/JordanEsquivelS/web_project_around_express.git
+   git clone https://github.com/JordanEsquivelS/web_project_api_full.git
 
 2. **Instalar dependencias**: Abre una terminal en la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias:
 
@@ -115,3 +115,7 @@ Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 Haz clic en el siguiente enlace para ver la demostración del proyecto en YouTube :
 
 [![Ver Demostración en YouTube](./demo_images/Miniatura_vid.png)](https://youtu.be/4xZyMsrSh4g)
+
+## Comentarios y Sugerencias
+
+Agradezco cualquier comentario o sugerencia para mejorar este proyecto. Si tienes ideas o identificas algún problema, no dudes en abrir un "Issue" en este repositorio de GitHub o enviar una "Pull Request" si deseas contribuir directamente con mejoras al código. ¡Tu feedback es invaluable para el crecimiento y mejora de este proyecto!
