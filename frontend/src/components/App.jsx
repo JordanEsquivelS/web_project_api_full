@@ -71,7 +71,7 @@ function App() {
     async function fetchInitialCards() {
       try {
         const cardsData = await api.getInitialCards("cards");
-        setCards(cardsData);
+        setCards([...cardsData].reverse());
       } catch (error) {
         console.error("Error fetching cards data:", error);
       }
@@ -206,7 +206,7 @@ function App() {
       console.error("Error deleting card:", error);
     }
   };
-  
+
   const handleAddPlaceSubmit = async (newCardData) => {
     try {
       const newCard = await api.setCard(
