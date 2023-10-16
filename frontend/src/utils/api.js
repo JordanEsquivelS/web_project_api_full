@@ -36,17 +36,6 @@ class Api {
     }
   }
 
-  async getUserInfo(endPoint) {
-    try {
-      const result = await this.fetchData(
-        `${this.options.address}/${endPoint}`
-      );
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async setUserInfo(nameInput, aboutMeInput, endPoint) {
     const body = {
       name: nameInput,

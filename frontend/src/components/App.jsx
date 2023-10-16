@@ -46,12 +46,8 @@ function App() {
       if (token) {
         try {
           const authUserData = await checkToken(token);
-
           if (authUserData && authUserData.email) {
-            const apiUserData = await api.getUserInfo("users/me");
-            const mergedData = mergeUserData(authUserData.data, apiUserData);
-
-            setCurrentUser(mergedData);
+            setCurrentUser(authUserData);
             setLoggedIn(true);
           } else {
             throw new Error("Invalid or missing email data.");
@@ -108,28 +104,15 @@ function App() {
     }
   };
 
-  const mergeUserData = (authData, apiData) => {
-    if (authData && apiData) {
-      return { ...authData, ...apiData };
-    }
-    if (authData) return authData;
-    if (apiData) return apiData;
-    return null;
-  };
-
   const handleLogin = async (password, email) => {
     try {
       const data = await authorize(password, email);
 
       if (data.token) {
         localStorage.setItem("jwt", data.token);
-
         try {
-          const authUserData = await checkToken(data.token);
-          const apiUserData = await api.getUserInfo("users/me");
-          const mergedData = mergeUserData(authUserData.data, apiUserData);
-
-          setCurrentUser(mergedData);
+          const userData = await checkToken(data.token);
+          setCurrentUser(userData);
           setLoggedIn(true);
         } catch (err) {
           console.log(err);
