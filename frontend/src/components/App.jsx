@@ -71,6 +71,21 @@ function App() {
     validateAndSetUser();
   }, []);
 
+  useEffect(() => {
+    async function fetchInitialCards() {
+      try {
+        const cardsData = await api.getInitialCards("cards");
+        setCards(cardsData);
+      } catch (error) {
+        console.error("Error fetching cards data:", error);
+      }
+    }
+
+    if (loggedIn) {
+      fetchInitialCards();
+    }
+  }, [loggedIn]);
+
   const handleRegister = async (password, email) => {
     try {
       const data = await register(password, email);
@@ -135,21 +150,6 @@ function App() {
       }
     }
   };
-
-  useEffect(() => {
-    async function fetchInitialCards() {
-      try {
-        const cardsData = await api.getInitialCards("cards");
-        setCards(cardsData);
-      } catch (error) {
-        console.error("Error fetching cards data:", error);
-      }
-    }
-
-    if (loggedIn) {
-      fetchInitialCards();
-    }
-  }, [loggedIn]);
 
   const closeTooltip = () => {
     setShowTooltip(false);
@@ -261,7 +261,7 @@ function App() {
     <CurrentUserContext.Provider
       value={{ currentUser, setUser: setCurrentUser }}
     >
-      <Router basename="/web_project_around_auth">
+      <Router>
         <div className="page">
           <Header onLogout={handleLogout} />
           <Routes>

@@ -110,9 +110,9 @@ class Api {
 
   async changeLikeCardStatus(cardId, like) {
     if (like) {
-      return this.likeCard(`cards/likes/${cardId}`);
+      return this.likeCard(`cards/${cardId}/likes`);
     } else {
-      return this.deleteLike(`cards/likes/${cardId}`);
+      return this.deleteLike(`cards/${cardId}/likes`);
     }
   }
 
