@@ -100,7 +100,7 @@ function App() {
     } catch (error) {
       setIsSuccess(false);
       setShowTooltip(true);
-      if (error.message === "User with this email address already exists") {
+      if (error.message === "Correo ya registrado") {
         setTooltipMessage("Este correo electrónico ya está registrado.");
       } else {
         setTooltipMessage("Uy, algo salió mal. Por favor, inténtalo de nuevo.");
