@@ -19,11 +19,18 @@ function Register({
     setShowPassword(!showPassword);
   };
 
+  const isValidPassword = (password) => {
+    const specialCharacters = /[!@#$%^&*()_+\-={};'":\\|,.<>/?]+/;
+    return password.length >= 5 && specialCharacters.test(password);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password.length < 5 || password.length > 15) {
-      setTooltipMessage("La contraseña debe tener entre 5 y 15 caracteres.");
+    if (!isValidPassword(password)) {
+      setTooltipMessage(
+        "La contraseña debe tener 5 caracteres, incluyendo 1 especial"
+      );
       setIsSuccess(false);
       setShowTooltip(true);
       return;
