@@ -1,6 +1,6 @@
 # Proyecto 13 - web_project_around_express
 
-Esta es una aplicación Express básica que sirve datos relacionados con tarjetas (cards) y usuarios desde archivos JSON.
+Esta es una aplicación Express básica que sirve datos relacionados con tarjetas (cards) y usuarios.
 
 ## Tecnologías Utilizadas
 
@@ -15,6 +15,46 @@ Entorno de ejecución que permite correr JavaScript en el servidor. Es la base s
 ### FS y Path
 
 Módulos integrados en Node.js. `FS` se utiliza para la lectura de archivos, y `Path` para gestionar y resolver rutas de archivos.
+
+### Mongoose
+
+Una librería de modelado de objetos para MongoDB. Facilita la interacción con la base de datos usando JavaScript.
+
+### Bcrypt
+
+Utilizado para el hashing y verificación de contraseñas. Es esencial para la seguridad y autenticación en el back-end.
+
+### JsonWebToken (jsonwebtoken)
+
+Permite la creación y verificación de tokens JWT para autenticación y protección de rutas.
+
+### Celebrate y Joi
+
+Bibliotecas utilizadas para la validación de datos entrantes. Permiten asegurarse de que los datos que se reciben sean coherentes y seguros.
+
+### Cors
+
+Middleware utilizado para habilitar solicitudes cruzadas (Cross-Origin Resource Sharing) y garantizar que la API pueda interactuar de forma segura con otros dominios.
+
+### Winston
+
+Un registrador flexible para Node.js, permite registrar información y errores, facilitando la detección y corrección de problemas.
+
+### Validator
+
+Librería que ofrece strings y validadores, útil para la validación y limpieza de datos.
+
+### Dotenv
+
+Utilizado para cargar variables de entorno desde un archivo .env. Esto ayuda a mantener seguras las claves y configuraciones sensibles, permitiendo que no se expongan directamente en el código.
+
+### ESLint con Configuración Airbnb
+
+Herramienta de linting para identificar y reportar patrones encontrados en código ECMAScript/JavaScript. La configuración de Airbnb es una guía de estilo de código ampliamente aceptada.
+
+### Nodemon
+
+Utilidad que monitorea cambios en archivos y reinicia automáticamente el servidor. Es especialmente útil durante el desarrollo para ver cambios en tiempo real.
 
 ## Instalación:
 
