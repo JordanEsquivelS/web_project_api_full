@@ -34,7 +34,9 @@ function Card({ card, onDeleteClick, onCardClick, onCardLike }) {
         alt={card.name}
         onClick={handleClick}
       />
-      {card.owner && currentUser && card.owner._id === currentUser._id && (
+      {((typeof card.owner === "object" &&
+        card.owner._id === currentUser._id) ||
+        card.owner === currentUser._id) && (
         <img
           alt="imagen de tacho de basura blanco"
           className="photo-grid__delete"

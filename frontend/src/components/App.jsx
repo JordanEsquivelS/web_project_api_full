@@ -206,6 +206,7 @@ function App() {
       console.error("Error deleting card:", error);
     }
   };
+  
   const handleAddPlaceSubmit = async (newCardData) => {
     try {
       const newCard = await api.setCard(
@@ -216,9 +217,14 @@ function App() {
       setCards([newCard, ...cards]);
       closeAllPopups();
     } catch (error) {
-      console.error("Error adding new card:", error);
+      setShowTooltip(true);
+      setTooltipMessage(
+        error.message ||
+          "Hubo un error al agregar la tarjeta. Inténtalo de nuevo."
+      );
     }
   };
+
   const handleDeleteForm = () => {
     setDeleteForm(true);
   };

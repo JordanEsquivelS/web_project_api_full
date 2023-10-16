@@ -28,10 +28,10 @@ class Api {
       if (response.ok) {
         return response.json();
       } else {
-        return Promise.reject(`Error: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.message || `Error: ${response.status}`);
       }
     } catch (error) {
-      console.error(error);
       throw error;
     }
   }
@@ -76,7 +76,6 @@ class Api {
       );
       return result;
     } catch (error) {
-      console.error("Error setting user picture:", error);
       throw error;
     }
   }
@@ -119,7 +118,6 @@ class Api {
       );
       return result;
     } catch (error) {
-      console.error("Error setting card:", error);
       throw error;
     }
   }
