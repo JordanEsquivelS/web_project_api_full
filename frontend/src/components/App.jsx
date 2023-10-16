@@ -139,15 +139,10 @@ function App() {
       localStorage.removeItem("jwt");
       setIsSuccess(false);
       setShowTooltip(true);
-      if (err.toString().includes("Unauthorized")) {
-        setTooltipMessage(
-          "Correo o contraseña incorrecta. Inténtalo de nuevo."
-        );
-      } else {
-        setTooltipMessage(
-          "Hubo un error al iniciar sesión. Inténtalo de nuevo."
-        );
-      }
+
+      setTooltipMessage(
+        err.message || "Hubo un error al iniciar sesión. Inténtalo de nuevo."
+      );
     }
   };
 
