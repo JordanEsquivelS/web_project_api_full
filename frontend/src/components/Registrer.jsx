@@ -29,7 +29,7 @@ function Register({
 
     if (!isValidPassword(password)) {
       setTooltipMessage(
-        "La contraseña debe tener 5 caracteres, incluyendo 1 especial"
+        "La contraseña debe tener mínimo 5 caracteres, incluyendo 1 especial"
       );
       setIsSuccess(false);
       setShowTooltip(true);
