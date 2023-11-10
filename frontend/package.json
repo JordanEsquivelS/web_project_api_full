@@ -2,7 +2,7 @@
   "name": "around-react",
   "version": "1.1.1",
   "private": true,
-  "homepage": ".",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* jordan11.tauro@35.224.198.130:/home/jordan11.tauro/web_project_api_full/frontend",
+    "deploy": "npm run build && scp -r ./build/* jordan11.tauro@104.198.71.40:/home/jordan11.tauro/web_project_api_full/front-end",
     "clean-build": "rmdir /s /q build",
     "postdeploy": "npm run clean-build"
   },

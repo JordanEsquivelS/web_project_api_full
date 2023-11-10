@@ -136,7 +136,7 @@ class Api {
 }
 
 const api = new Api({
-  address: "https://api.aroundEsquivelS.chickenkiller.com",
+  address: "https://apiaroundesquivels.lat",
 });
 
 export default api;

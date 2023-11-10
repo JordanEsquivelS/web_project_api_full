@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.aroundEsquivelS.chickenkiller.com";
+const BASE_URL = "https://apiaroundesquivels.lat";
 
 export const register = async (password, email) => {
   try {
